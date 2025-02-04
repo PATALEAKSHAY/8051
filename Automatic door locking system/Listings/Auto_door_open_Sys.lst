@@ -1,0 +1,52 @@
+C51 COMPILER V9.60.7.0   AUTO_DOOR_OPEN_SYS                                                11/18/2024 19:26:14 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE AUTO_DOOR_OPEN_SYS
+OBJECT MODULE PLACED IN .\Objects\Auto_door_open_Sys.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Auto_door_open_Sys.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.
+                    -\Listings\Auto_door_open_Sys.lst) TABS(2) OBJECT(.\Objects\Auto_door_open_Sys.obj)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          sbit sensor=P1^0;
+   3          sbit relay=P1^1;
+   4          void delay();
+   5          sbit relay2=P1^2;
+   6          void main()
+   7          {
+   8   1        relay=0;
+   9   1        relay2=0;
+  10   1        while(1){
+  11   2        if(sensor==0)   //prototype button1 end connect to I/O other end with ground
+  12   2        {
+  13   3          relay=1;
+  14   3          relay2=0; //motor runs clockwise  - door will open
+  15   3          delay();
+  16   3          relay=0;
+  17   3          relay2=1; //motor start anti-clockwise
+  18   3          delay();
+  19   3          relay=relay2=0;
+  20   3      }
+  21   2      }
+  22   1      }
+  23          void delay()
+  24          {
+  25   1      unsigned  int i,j;
+  26   1      for(i=0;i<10;i++)
+  27   1      for(j=0;j<60000;j++); 
+  28   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     72    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
